@@ -1,9 +1,55 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" xmlns:remote="http://www.w3.org/1999/xhtml" xmlns:remote="http://www.w3.org/1999/xhtml"><%= notice %></p>
 
 <h1>Students</h1>
 
 <%= render 'people/list', people: @course.students %>
 
-<br>
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#enrollStudentModal" remote: true>Enroll Student</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createStudentModal" remote: true>Create Student</button>
 
+<br>
 <%= link_to 'New Student', new_course_enrollment_path(course_id: @course.id) %>
+
+
+
+<!-- Modal -->
+<div id="enrollStudentModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Enroll Student to Course</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'enrollments/form', course: @course, enrollment: @enrollment %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="createStudentModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create Student</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'people/form', person: @person, resource_name: 'people/sign_in' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

@@ -32,9 +32,11 @@ class EnrollmentsController < ApplicationController
       if @enrollment.save
         format.html { redirect_to [@course, @enrollment], notice: 'Enrollment was successfully created.' }
         format.json { render :show, status: :created, location: @enrollment }
+        format.js { render 'users/show_update'}
       else
         format.html { render :new }
         format.json { render json: @enrollment.errors, status: :unprocessable_entity }
+        format.js { render 'users/show_update'}
       end
     end
   end
